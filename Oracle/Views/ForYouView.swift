@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ForYouView: View {
     var body: some View {
-        Text("For You Page")
+        Text("For You")
     }
 }
 
