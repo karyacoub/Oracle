@@ -11,14 +11,7 @@ struct LibraryView: View {
             Text("Recently Played")
                 .font(.title)
                 
-            
-            ScrollView(.horizontal, showsIndicators: true) {
-                HStack {
-                    AlbumTile()
-                    AlbumTile()
-                    AlbumTile()
-                }
-            }
+            AlbumTileList()
         }
         .frame(
             maxWidth: .infinity,
