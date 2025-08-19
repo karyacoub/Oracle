@@ -1,27 +1,27 @@
 import SwiftUI
 
 public protocol ColorProtocol {
-    var BUTTON_BACKGROUND: Color { get }
-    var TEXT: Color { get }
-    var SUBTEXT: Color { get }
+    var PRIMARY_TEXT: Color { get }
+    var SECONDARY_TEXT: Color { get }
+    var CARD_BACKGROUND: Color { get }
 }
 
 private final class DefaultColorsLightMode: ColorProtocol {
     static let shared: ColorProtocol = DefaultColorsLightMode()
     private init() {}
     
-    let BUTTON_BACKGROUND = Color(red: 0.7, green: 0.7, blue: 0.7)
-    let TEXT = Color(red: 0.9, green: 0.9, blue: 0.9)
-    let SUBTEXT = Color(red: 0.9, green: 0.9, blue: 0.9)
+    let PRIMARY_TEXT = Color.black
+    let SECONDARY_TEXT = Color(red: 0.4, green: 0.4, blue: 0.4)
+    let CARD_BACKGROUND = Color(red: 0.93, green: 0.93, blue: 0.93)
 }
 
 private final class DefaultColorsDarkMode: ColorProtocol {
     static let shared: ColorProtocol = DefaultColorsDarkMode()
     private init() {}
     
-    let BUTTON_BACKGROUND = Color(red: 0.15, green: 0.15, blue: 0.15)
-    let TEXT = Color(red: 0.9, green: 0.9, blue: 0.9)
-    let SUBTEXT = Color(red: 0.6, green: 0.6, blue: 0.6)
+    let PRIMARY_TEXT = Color.white
+    let SECONDARY_TEXT = Color(red: 0.6, green: 0.6, blue: 0.6)
+    let CARD_BACKGROUND = Color(red: 0.15, green: 0.15, blue: 0.15)
 }
 
 public struct ColorSchemeManager {

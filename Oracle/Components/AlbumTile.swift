@@ -14,13 +14,13 @@ struct AlbumTile: View {
                 .scaledToFit()
                 .padding(50)
                 .frame(width: 170, height: 170)
-                .foregroundColor(colors.SUBTEXT)
-                .background(colors.BUTTON_BACKGROUND)
+                .foregroundColor(colors.SECONDARY_TEXT)
+                .background(colors.CARD_BACKGROUND)
                 .cornerRadius(10)
             Text("Album Title")
                 .bold()
             Text("Artist")
-                .foregroundColor(colors.SUBTEXT)
+                .foregroundColor(colors.SECONDARY_TEXT)
             
         }
     }
