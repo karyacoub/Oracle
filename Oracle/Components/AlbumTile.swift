@@ -8,13 +8,13 @@ struct AlbumTile: View {
                 .scaledToFit()
                 .padding(50)
                 .frame(width: 170, height: 170)
-                .foregroundColor(Colors.DARK_GRAY)
-                .background(Colors.GRAY)
+                .foregroundColor(getColorScheme().BUTTON_BACKGROUND)
+                .background(getColorScheme().TEXT)
                 .cornerRadius(10)
             Text("Album Title")
                 .bold()
             Text("Artist")
-                .foregroundColor(Colors.DARK_GRAY)
+                .foregroundColor(getColorScheme().BUTTON_BACKGROUND)
             
         }
     }
