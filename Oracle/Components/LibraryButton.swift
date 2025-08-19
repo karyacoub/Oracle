@@ -3,11 +3,14 @@ import SwiftUI
 
 
 struct LibraryButton: View {
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+    
+    var colors: ColorProtocol {
+        return ColorSchemeManager(colorScheme: colorScheme).createColorScheme()
+    }
     
     let text: String
     let image: String
-    
-    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         HStack {
@@ -16,7 +19,7 @@ struct LibraryButton: View {
             Image(systemName: image)
         }
         .padding(.all)
-        .background(getColorScheme().TEXT)
+        .background(colors.BUTTON_BACKGROUND)
         .cornerRadius(5)
     }
 }

@@ -1,6 +1,12 @@
 import SwiftUI
 
 struct AlbumTile: View {
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+
+    var colors: ColorProtocol {
+        return ColorSchemeManager(colorScheme: colorScheme).createColorScheme()
+    }
+    
     var body: some View {
         VStack {
             Image(systemName: "music.note")
@@ -8,13 +14,13 @@ struct AlbumTile: View {
                 .scaledToFit()
                 .padding(50)
                 .frame(width: 170, height: 170)
-                .foregroundColor(getColorScheme().BUTTON_BACKGROUND)
-                .background(getColorScheme().TEXT)
+                .foregroundColor(colors.SUBTEXT)
+                .background(colors.BUTTON_BACKGROUND)
                 .cornerRadius(10)
             Text("Album Title")
                 .bold()
             Text("Artist")
-                .foregroundColor(getColorScheme().BUTTON_BACKGROUND)
+                .foregroundColor(colors.SUBTEXT)
             
         }
     }
