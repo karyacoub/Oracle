@@ -10,6 +10,12 @@ import SwiftData
 
 @main
 struct OracleApp: App {
+    
+    // runs on app launch
+    init () {
+        FileStorageUtils.createPlaceholderFile()
+    }
+    
     var body: some Scene {
         WindowGroup {
             RootView()

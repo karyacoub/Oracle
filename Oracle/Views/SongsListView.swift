@@ -4,32 +4,39 @@ import Foundation
 struct SongsListView: View {
     
     func listFiles() -> [URL] {
-        // Get the app's Documents directory
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        
+        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return []
+        }
+
         let fileManager = FileManager.default
+        var audioFiles: [URL] = []
+        let enumeratorErrorHandler : (URL, Error) -> Bool = { (url, error) -> Bool in
+            print("Error accessing \(url): \(error)")
+            return true
+        }
+    
         
-        do {
-            // Get all files in the directory
-            let files = try fileManager.contentsOfDirectory(
-                at: documentsDirectory,
-                includingPropertiesForKeys: nil,
-                options: [.skipsHiddenFiles]
-            )
-                
-            // Filter only audio files (e.g., mp3, wav, m4a)
-            let audioFiles = files.filter { $0.pathExtension.lowercased() == "mp3" ||
-                                            $0.pathExtension.lowercased() == "wav" ||
-                                            $0.pathExtension.lowercased() == "m4a" }
-                return audioFiles
-            } catch {
-                print("Error reading directory: \(error)")
-                return []
+        if let enumerator = fileManager.enumerator(
+            at: documentsDirectory,
+            includingPropertiesForKeys: nil,
+            options: [.skipsHiddenFiles],
+            errorHandler: enumeratorErrorHandler
+        ) {
+            for case let fileURL as URL in enumerator {
+                let ext = fileURL.pathExtension.lowercased()
+                if ["mp3", "wav", "m4a"].contains(ext) {
+                    audioFiles.append(fileURL)
+                }
             }
+        }
+
+        print("Audio files: \(audioFiles)")
+        return audioFiles
     }
     
     var body: some View {
-        let files: String = listFiles().map { $0.absoluteString }.joined(separator: "\n")
+        let files: String = listFiles().map { $0.lastPathComponent }.joined(separator: "\n")
+        
         VStack {
             Text("Files:")
             Text(files)
