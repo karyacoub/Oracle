@@ -39,12 +39,6 @@ public struct ColorSchemeManager {
     }
 }
 
-public func getColorScheme(colorScheme: ColorScheme) -> ColorProtocol {
-    return colorScheme == .dark
-        ? DefaultColorsDarkMode.shared
-        : DefaultColorsLightMode.shared
-}
-
 #Preview {
     LibraryView()
 }

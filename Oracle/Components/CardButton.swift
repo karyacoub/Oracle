@@ -2,11 +2,11 @@ import SwiftUI
 
 
 
-struct LibraryButton<Destination: View>: View {
-    @Environment(\.colorScheme) var colorScheme: ColorScheme
+struct CardButton<Destination: View>: View {
+    @Environment(\.colorScheme) var systemColorScheme: ColorScheme
     
     var colors: ColorProtocol {
-        return ColorSchemeManager(colorScheme: colorScheme).createColorScheme()
+        return ColorSchemeManager(colorScheme: systemColorScheme).createColorScheme()
     }
     
     let text: String
@@ -22,11 +22,9 @@ struct LibraryButton<Destination: View>: View {
     var body: some View {
         NavigationLink(destination: destination) {
             HStack {
-                Text(text)
+                PrimaryText(text)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundStyle(colors.PRIMARY_TEXT)
-                Image(systemName: image)
-                    .foregroundStyle(colors.PRIMARY_TEXT)
+                PrimarySystemIcon(image)
             }
             .padding(.all)
             .background(colors.CARD_BACKGROUND)
@@ -36,8 +34,7 @@ struct LibraryButton<Destination: View>: View {
 }
 
 #Preview {
-    LibraryButton(text: "Songs", image: "music.note") {
+    CardButton(text: "Songs", image: "music.note") {
         SongsListView()
     }
-//    LibraryButton(text: "Test", image: "music.note")
 }
